@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Puissance de 2</title>
+</head>
+<body>
+    <h1>Calculer 2^n</h1>
+    <input type="number" id="numberInput" />
+    <button onclick="calculate()">Calculer</button>
+    <p>Résultat: <span id="result"></span></p>
+
+    <script>
+        function calculate() {
+            const n = document.getElementById('numberInput').value;
+            fetch(`http://localhost:3000/poweroftwo/${n}`)
+
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result').textContent = data.result;
+                })
+                .catch(err => console.error('Erreur :', err));
+        }
+    </script>
+</body>
+</html>
